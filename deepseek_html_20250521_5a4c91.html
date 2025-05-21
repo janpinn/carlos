@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor para Ti 💌</title>
+    <style>
+        body {
+            font-family: 'Arial', cursive;
+            background-color: #ffebee;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            position: relative;
+            transform: scale(0.9);
+            opacity: 0;
+            animation: appear 1s forwards;
+        }
+        h1 {
+            color: #e91e63;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            transition: transform 0.3s;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .hidden {
+            display: none;
+        }
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff4081;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes appear {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card" id="card">
+        <h1>💌 Para Ti 💌</h1>
+        <p id="message">Haz clic en el botón para descubrir un mensaje especial...</p>
+        <button onclick="showMessage()">Hazme clic ❤️</button>
+        <div id="extra" class="hidden">
+            <p>Eres la persona más especial en mi vida. 💖</p>
+            <p>Gracias por existir. 😊</p>
+            <button onclick="createHearts()">¡Más amor! 🎉</button>
+        </div>
+    </div>
+
+    <script>
+        const messages = [
+            "Eres lo mejor que me ha pasado. 🌟",
+            "Mi corazón late por ti. 💓",
+            "Eres mi sueño hecho realidad. 🌙",
+            "No hay nadie como tú en el mundo. 🌎",
+            "Te amo más que a nada. ❤️"
+        ];
+
+        function showMessage() {
+            document.getElementById("message").textContent = 
+                messages[Math.floor(Math.random() * messages.length)];
+            document.getElementById("extra").classList.remove("hidden");
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.innerHTML = "❤️";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.animationDuration = 3 + Math.random() * 5 + "s";
+                document.body.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>
